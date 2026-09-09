@@ -1,0 +1,16 @@
+Patient: 62F. Follow-up for hypertension and type 2 diabetes.
+
+Subjective: Feeling well overall. Reports mild dizziness when standing up in the
+mornings. Adherent to medications. No chest pain or palpitations.
+
+Current medications:
+- lisinopril 20 mg daily for blood pressure
+- metformin 1000 mg twice daily
+- Lipitor for cholesterol
+- Norvasc for blood pressure
+- HCTZ (patient unsure of the dose)
+- ASA 81 mg daily
+
+Assessment / Plan: BP 118/76 today. Continue the current regimen. Reinforced
+standing up slowly given the orthostatic symptoms, likely related to the
+hydrochlorothiazde. Recheck basic metabolic panel in 3 months.
