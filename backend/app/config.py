@@ -20,6 +20,10 @@ class Settings(BaseSettings):
     llm_model: str = "gpt-4o-mini"
     llm_api_key: str | None = None
 
+    # Where the API can reach itself. Wound creation kicks off the
+    # assessment by calling back into POST /api/wounds/{id}/assess.
+    app_base_url: str = "http://localhost:8000"
+
     model_config = SettingsConfigDict(
         env_file=BACKEND_DIR / ".env",
         env_file_encoding="utf-8",

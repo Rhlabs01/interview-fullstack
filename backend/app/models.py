@@ -1,6 +1,19 @@
 from datetime import date, datetime
+from decimal import Decimal
 
-from sqlalchemy import Date, DateTime, ForeignKey, Integer, String, Text, func
+from sqlalchemy import (
+    JSON,
+    Boolean,
+    Date,
+    DateTime,
+    ForeignKey,
+    Integer,
+    Numeric,
+    String,
+    Text,
+    false,
+    func,
+)
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -78,3 +91,55 @@ class Medication(Base):
     # Comma-separated for portability; exposed as lists in the API.
     brand_names: Mapped[str | None] = mapped_column(Text)
     drug_class: Mapped[str | None] = mapped_column(String(255))
+
+
+class Wound(Base):
+    __tablename__ = "wounds"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    patient_id: Mapped[str | None] = mapped_column(String(36), ForeignKey("patients.id"))
+    clinician_id: Mapped[str | None] = mapped_column(
+        String(36), ForeignKey("clinicians.id")
+    )
+    location: Mapped[str] = mapped_column(String(255), nullable=False)
+    wound_type: Mapped[str] = mapped_column(String(100), nullable=False)
+    description: Mapped[str | None] = mapped_column(Text)
+    # Base64-encoded photo of the wound, if one was attached.
+    image_data: Mapped[str | None] = mapped_column(Text)
+    status: Mapped[str] = mapped_column(String(50), server_default="active")
+    version: Mapped[int] = mapped_column(Integer, server_default="1")
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+
+
+class WoundAssessment(Base):
+    __tablename__ = "wound_assessments"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    wound_id: Mapped[str | None] = mapped_column(String(36), ForeignKey("wounds.id"))
+    clinician_id: Mapped[str | None] = mapped_column(
+        String(36), ForeignKey("clinicians.id")
+    )
+    length_cm: Mapped[Decimal | None] = mapped_column(Numeric(5, 2))
+    width_cm: Mapped[Decimal | None] = mapped_column(Numeric(5, 2))
+    depth_cm: Mapped[Decimal | None] = mapped_column(Numeric(5, 2))
+    tissue_type: Mapped[str | None] = mapped_column(String(100))
+    exudate_amount: Mapped[str | None] = mapped_column(String(50))
+    healing_stage: Mapped[str | None] = mapped_column(String(50))
+    push_score: Mapped[Decimal | None] = mapped_column(Numeric(4, 1))
+    ai_generated: Mapped[bool] = mapped_column(Boolean, server_default=false())
+    notes: Mapped[str | None] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+
+
+class AIJob(Base):
+    __tablename__ = "ai_jobs"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    wound_id: Mapped[str | None] = mapped_column(String(36), ForeignKey("wounds.id"))
+    job_type: Mapped[str] = mapped_column(String(50), nullable=False)
+    status: Mapped[str] = mapped_column(String(50), server_default="pending")
+    result: Mapped[dict | None] = mapped_column(JSON)
+    error_message: Mapped[str | None] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime)

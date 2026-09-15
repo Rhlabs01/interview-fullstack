@@ -94,3 +94,44 @@ export interface NoteAnalysis {
   mentions: MedicationMention[];
   implemented: boolean;
 }
+
+export interface Wound {
+  id: string;
+  patient_id: string;
+  clinician_id: string;
+  location: string;
+  wound_type: string;
+  description: string;
+  image_data: string | null;
+  status: string;
+  version: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface WoundAssessment {
+  id: string;
+  wound_id: string;
+  clinician_id: string;
+  length_cm: number;
+  width_cm: number;
+  depth_cm: number;
+  tissue_type: string;
+  exudate_amount: string;
+  healing_stage: string;
+  push_score: number;
+  ai_generated: boolean;
+  notes: string;
+  created_at: string;
+}
+
+export interface AIJob {
+  id: string;
+  wound_id: string;
+  job_type: string;
+  status: string;
+  result: Record<string, unknown> | null;
+  error_message: string | null;
+  created_at: string;
+  completed_at: string | null;
+}

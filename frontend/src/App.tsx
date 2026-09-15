@@ -5,6 +5,8 @@ import LoginPage from "./pages/LoginPage";
 import MedicationsPage from "./pages/MedicationsPage";
 import PatientPage from "./pages/PatientPage";
 import VisitPage from "./pages/VisitPage";
+import WoundPage from "./pages/WoundPage";
+import WoundsPage from "./pages/WoundsPage";
 
 export default function App() {
   return (
@@ -16,6 +18,8 @@ export default function App() {
           <Route path="/medications" element={<MedicationsPage />} />
           <Route path="/patients/:id" element={<PatientPage />} />
           <Route path="/patients/:id/visits/:visitId" element={<VisitPage />} />
+          <Route path="/patients/:id/wounds" element={<WoundsPage />} />
+          <Route path="/patients/:id/wounds/:woundId" element={<WoundPage />} />
         </Routes>
         <StatusBar />
       </div>

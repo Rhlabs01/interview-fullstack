@@ -107,6 +107,23 @@ export default function PatientPage() {
         <p className="text-gray-500 text-sm">{patient.clinician_specialty}</p>
       </div>
 
+      <div className="mb-8">
+        <Link
+          to={`/patients/${id}/wounds`}
+          className="block bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow border border-gray-100"
+        >
+          <div className="flex justify-between items-center">
+            <div>
+              <h2 className="text-lg font-semibold text-gray-900">Wound Care</h2>
+              <p className="text-sm text-gray-500 mt-1">
+                Document and track wounds with AI-powered assessments
+              </p>
+            </div>
+            <span className="text-blue-600 text-sm">View →</span>
+          </div>
+        </Link>
+      </div>
+
       <div>
         <h2 className="text-xl font-semibold text-gray-900 mb-4">Visits ({visits.length})</h2>
 

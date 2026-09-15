@@ -13,6 +13,7 @@ from app.routers import (
     patients,
     seed,
     visits,
+    wounds,
 )
 
 STATIC_DIR = Path(__file__).parent / "static"
@@ -36,6 +37,7 @@ app.include_router(patients.router, prefix="/api")
 app.include_router(visits.router, prefix="/api")
 app.include_router(medications.router, prefix="/api")
 app.include_router(analysis.router, prefix="/api")
+app.include_router(wounds.router, prefix="/api")
 
 
 @app.get("/{full_path:path}")

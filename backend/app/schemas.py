@@ -1,4 +1,5 @@
 from datetime import date, datetime
+from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict
 
@@ -152,3 +153,61 @@ class NoteAnalysis(BaseModel):
     # Set to False by the scaffold's empty stub. Flip it to True once real
     # detection + matching is implemented (see EXERCISE.md).
     implemented: bool = False
+
+
+class WoundOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: str
+    patient_id: str | None = None
+    clinician_id: str | None = None
+    location: str
+    wound_type: str
+    description: str | None = None
+    image_data: str | None = None
+    status: str
+    version: int
+    created_at: datetime | None = None
+    updated_at: datetime | None = None
+
+
+class WoundListItem(WoundOut):
+    clinician_name: str | None = None
+    assessment_count: int = 0
+
+
+class WoundDetail(WoundOut):
+    patient_name: str | None = None
+    patient_mrn: str | None = None
+    clinician_name: str | None = None
+
+
+class WoundAssessmentOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: str
+    wound_id: str | None = None
+    clinician_id: str | None = None
+    length_cm: Decimal | None = None
+    width_cm: Decimal | None = None
+    depth_cm: Decimal | None = None
+    tissue_type: str | None = None
+    exudate_amount: str | None = None
+    healing_stage: str | None = None
+    push_score: Decimal | None = None
+    ai_generated: bool = False
+    notes: str | None = None
+    created_at: datetime | None = None
+
+
+class AIJobOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: str
+    wound_id: str | None = None
+    job_type: str
+    status: str
+    result: dict | None = None
+    error_message: str | None = None
+    created_at: datetime | None = None
+    completed_at: datetime | None = None
