@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Env / secrets
+.env
+.env.local
+.env*.local
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+
+# Built SPA copied into the API image locally
+backend/app/static/assets/
+backend/app/static/index.html

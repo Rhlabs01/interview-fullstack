@@ -1,0 +1,19 @@
+Patient: 78M. Medication review after a recent hospitalization.
+
+Subjective: Son reports the patient occasionally forgets doses. Started a new
+"blood thinner" in the hospital. Sleeping poorly.
+
+Medication reconciliation (as reported by family, spellings uncertain):
+- Coumadin, now taking daily
+- metopralol for heart rate
+- omeprazole for reflux
+- gabapentine at night for neuropathy
+- sertralin for mood
+- Ventolin inhaler as needed for wheezing
+- MTX weekly (followed by rheumatology)
+- vitamin D and folic acid supplements
+- Tylenol as needed for knee pain
+
+Assessment / Plan: Confirmed warfarin dosing with the pharmacy; INR pending.
+Holding the levothyroxin refill until we verify the current dose. Counseled on
+fall risk and reviewed the anticoagulation plan with the family.
